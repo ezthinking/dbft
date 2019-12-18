@@ -31,6 +31,7 @@ const (
 	// SuiteECDSA is a ECDSA suite over P-256 curve
 	// with 64-byte uncompressed signatures.
 	SuiteECDSA suiteType = 1 + iota
+	SuiteBLS
 )
 
 const defaultSuite = SuiteECDSA
@@ -44,8 +45,11 @@ func Generate(r io.Reader) (PrivateKey, PublicKey) {
 // GenerateWith generates new key pair for suite t
 // using r as a source of entropy.
 func GenerateWith(t suiteType, r io.Reader) (PrivateKey, PublicKey) {
-	if t == SuiteECDSA {
+	switch t {
+	case SuiteECDSA:
 		return generateECDSA(r)
+	case SuiteBLS:
+		return generateBLS(r)
 	}
 
 	return nil, nil

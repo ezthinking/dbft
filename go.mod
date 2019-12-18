@@ -8,6 +8,7 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/spaolacci/murmur3 v1.1.0
 	github.com/stretchr/testify v1.4.0
+	go.dedis.ch/kyber/v4 v4.0.0-pre2
 	go.uber.org/zap v1.10.0
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
 )
