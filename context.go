@@ -163,7 +163,6 @@ func (c *Context) MoreThanFNodesCommittedOrLost() bool {
 
 func (c *Context) reset(view byte) {
 	c.MyIndex = -1
-	n := len(c.Validators)
 	if view == 0 {
 		c.PrevHash = c.Config.CurrentBlockHash()
 		c.BlockIndex = c.Config.CurrentHeight() + 1
@@ -171,6 +170,7 @@ func (c *Context) reset(view byte) {
 
 		c.block = nil
 
+		n := len(c.Validators)
 		c.ChangeViewPayloads = make([]payload.ConsensusPayload, n)
 		c.LastChangeViewPayloads = make([]payload.ConsensusPayload, n)
 		c.CommitPayloads = make([]payload.ConsensusPayload, n)
@@ -183,7 +183,7 @@ func (c *Context) reset(view byte) {
 		}
 	} else {
 		c.block = nil
-		c.CommitPayloads = make([]payload.ConsensusPayload, n)
+		c.CommitPayloads = make([]payload.ConsensusPayload, len(c.Validators))
 		for i := range c.Validators {
 			m := c.ChangeViewPayloads[i]
 			if m != nil && m.GetChangeView().NewViewNumber() < view {
