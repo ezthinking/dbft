@@ -1,6 +1,7 @@
 package dbft
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 
@@ -247,10 +248,12 @@ func (c *Context) getTimestamp() uint64 {
 // CreateBlock returns resulting block for the current epoch.
 func (c *Context) CreateBlock() block.Block {
 	if c.block == nil {
+		fmt.Printf("(c *Context) CreateBlock(): expected c.block == nil, actual: %s\n", c.block == nil)
 		if c.block = c.MakeHeader(); c.block == nil {
+			fmt.Printf("if c.block = c.MakeHeader(); c.block == nil:\n\texpected c.block == nil, \n\tactual: %s\n", c.block == nil)
 			return nil
 		}
-
+		fmt.Printf("if c.block = c.MakeHeader(); c.block == nil:\n\texpected c.block != nil, \n\tactual: %s\n", c.block == nil)
 		txx := make([]block.Transaction, len(c.TransactionHashes))
 
 		for i, h := range c.TransactionHashes {
@@ -259,7 +262,7 @@ func (c *Context) CreateBlock() block.Block {
 
 		c.block.SetTransactions(txx)
 	}
-
+	fmt.Printf("(c *Context) CreateBlock(): expected c.block != nil, actual: %s\n", c.block == nil)
 	return c.block
 }
 
@@ -267,9 +270,10 @@ func (c *Context) CreateBlock() block.Block {
 // All hashable fields will be filled.
 func (c *Context) MakeHeader() block.Block {
 	if c.header == nil {
+		fmt.Printf("(c *Context) MakeHeader(): \n\texpected c.header == nil, \n\tactual: %v\n", c.header == nil)
 		c.header = c.Config.NewBlockFromContext(c)
 	}
-
+	fmt.Printf("(c *Context) MakeHeader(): \n\texpected c.header != nil, \n\tactual: %v\n", c.header == nil)
 	return c.header
 }
 
