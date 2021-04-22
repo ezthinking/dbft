@@ -1,0 +1,18 @@
+Source: gg-dbft
+Section: contrib/net
+Priority: optional
+Maintainer: Erik Ziegenbalg <erikziege@gmail.com>
+Build-Depends: debhelper,
+ dh-golang,
+ golang,
+ autoconf,
+ automake
+Standards-Version: 3.9.8
+
+Package: gg-dbft
+Architecture: all
+Depends:
+ python,
+ tf-nightly
+Pre-Depends: bash-completion
+Description: Goldengoose dbft
