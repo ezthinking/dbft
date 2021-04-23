@@ -1,18 +1,22 @@
-Source: gg-dbft
+Source: golang-dbft
 Section: contrib/net
 Priority: optional
 Maintainer: Erik Ziegenbalg <erikziege@gmail.com>
 Build-Depends: debhelper,
  dh-golang,
  golang,
+ golang-rfc6979,
+ golang-base58,
+ golang-golang-x-crypto-dev,
+ golang-go.uber-zap-dev,
+ golang-github-spaolacci-murmur3-dev,
+ golang-neofs-crypto,
  autoconf,
  automake
 Standards-Version: 3.9.8
 
-Package: gg-dbft
+Package: golang-dbft
 Architecture: all
-Depends:
- python,
- tf-nightly
+Depends: golang
 Pre-Depends: bash-completion
 Description: Goldengoose dbft
